@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: benblog
+  namespace: benpod
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: benblog
+  template:
+    metadata:
+      labels:
+        app: benblog
+    spec:
+      containers:
+        - image: harbor.home.ads:443/library/benblog:v7
+          name: benblog
+          ports:
+            - containerPort: 80
